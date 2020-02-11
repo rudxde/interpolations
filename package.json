@@ -1,6 +1,6 @@
 {
-  "name": "",
-  "version": "1.0.0",
+  "name": "interpolations",
+  "version": "0.0.0",
   "description": "",
   "main": "index",
   "types": "index",
@@ -10,8 +10,8 @@
     "test:coverage": "ts-node -P ./tsconfig.test.json node_modules/nyc/bin/nyc.js npm rum test"
   },
   "author": "rudxde",
-  "repository": "",
-  "bugs": "",
+  "repository": "https://github.com/rudxde/interpolations",
+  "bugs": "https://github.com/rudxde/interpolations/issues",
   "dependencies": {},
   "devDependencies": {
     "@types/jasmine": "^3.5.3",
