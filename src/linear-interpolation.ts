@@ -1,5 +1,10 @@
 import { I2DimensionalInterpolation } from './2-dimension';
 
+export function lerp(start: number, end: number, alpha: number): number {
+    const interpolation = new LinearInterpolation(0, 1, start, end);
+    return interpolation.eval(alpha);
+}
+
 export class LinearInterpolation extends I2DimensionalInterpolation {
 
     constructor(
