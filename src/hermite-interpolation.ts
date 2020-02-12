@@ -1,3 +1,10 @@
+import { I2DimensionalInterpolation } from './2-dimension';
+
+export function smoothstep(min: number, max: number, t: number): number {
+    const interpolation = new HermiteInterpolation(0, 1, min, max, 0, 0);
+    return interpolation.eval(t > 1 ? 1 : t < 0 ? 0 : t);
+}
+
 // Shorthand for math.pow
 const pow = (x: number, y: number): number => Math.pow(x, y);
 
@@ -13,7 +20,7 @@ const H_1 = (x: number): number => (-6 * pow(x, 2)) + (6 * x);
 const H_2 = (x: number): number => 3 * pow(x, 2) - (4 * x) + 1;
 const H_3 = (x: number): number => (3 * pow(x, 2)) - (2 * x);
 
-export class HermiteInterpolation {
+export class HermiteInterpolation extends I2DimensionalInterpolation {
 
     /**
      * Creates an instance of HermiteInterpolation.
@@ -26,23 +33,14 @@ export class HermiteInterpolation {
      * @memberof HermiteInterpolation
      */
     constructor(
-        public from: number = 0,
-        public to: number = 1,
+        from: number = 0,
+        to: number = 1,
         public fromValue: number = 0,
         public toValue: number = 1,
         public fromDerivate: number = 0,
         public toDerivate: number = 0,
-    ) { }
-
-    /**
-     * Interpolates between ```from``` and ```to```, the values ```fromValue``` and ```toValue``` with the given derivations at start and end.
-     *
-     * @param {number} x between ```from``` and ```to```
-     * @returns {number}
-     * @memberof HermiteInterpolation
-     */
-    public eval(x: number): number {
-        return this.evalRelative(this.transformInput(x));
+    ) {
+        super(from, to);
     }
 
     /**
@@ -84,17 +82,5 @@ export class HermiteInterpolation {
         const y_0 = this.fromDerivate;
         const y_1 = this.toDerivate;
         return y0 * H_0(x) + y1 * H_1(x) + y_0 * H_2(x) + y_1 * H_3(x);
-    }
-
-    /**
-     * Transforms the input in a relative from 0 to 1 between the boundary's from and to.
-     *
-     * @private
-     * @param {number} x
-     * @returns {number}
-     * @memberof HermiteInterpolation
-     */
-    private transformInput(x: number): number {
-        return (x - this.from) / (this.to - this.from);
     }
 }
