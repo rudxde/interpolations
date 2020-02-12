@@ -1,17 +1,17 @@
 // Shorthand for math.pow
-const pow = (x: number, y: number) => Math.pow(x, y);
+const pow = (x: number, y: number): number => Math.pow(x, y);
 
 // Determined part functions of hermite-interpolation through equation system. 
-const H0 = (x: number) => (2 * pow(x, 3)) - (3 * pow(x, 2)) + 1;
-const H1 = (x: number) => (-2 * pow(x, 3)) + (3 * pow(x, 2));
-const H2 = (x: number) => (pow(x, 3)) - (2 * pow(x, 2)) + x;
-const H3 = (x: number) => pow(x, 3) - pow(x, 2);
+const H0 = (x: number): number => (2 * pow(x, 3)) - (3 * pow(x, 2)) + 1;
+const H1 = (x: number): number => (-2 * pow(x, 3)) + (3 * pow(x, 2));
+const H2 = (x: number): number => (pow(x, 3)) - (2 * pow(x, 2)) + x;
+const H3 = (x: number): number => pow(x, 3) - pow(x, 2);
 
 // derives of part functions
-const H_0 = (x: number) => (6 * pow(x, 2)) - (6 * x);
-const H_1 = (x: number) => (-6 * pow(x, 2)) + (6 * x);
-const H_2 = (x: number) => 3 * pow(x, 2) - (4 * x) + 1;
-const H_3 = (x: number) => (3 * pow(x, 2)) - (2 * x);
+const H_0 = (x: number): number => (6 * pow(x, 2)) - (6 * x);
+const H_1 = (x: number): number => (-6 * pow(x, 2)) + (6 * x);
+const H_2 = (x: number): number => 3 * pow(x, 2) - (4 * x) + 1;
+const H_3 = (x: number): number => (3 * pow(x, 2)) - (2 * x);
 
 export class HermiteInterpolation {
 
