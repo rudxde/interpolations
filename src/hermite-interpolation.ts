@@ -1,5 +1,10 @@
 import { I2DimensionalInterpolation } from './2-dimension';
 
+export function smoothstep(min: number, max: number, t: number): number {
+    const interpolation = new HermiteInterpolation(0, 1, min, max, 0, 0);
+    return interpolation.eval(t > 1 ? 1 : t < 0 ? 0 : t);
+}
+
 // Shorthand for math.pow
 const pow = (x: number, y: number): number => Math.pow(x, y);
 
@@ -34,7 +39,7 @@ export class HermiteInterpolation extends I2DimensionalInterpolation {
         public toValue: number = 1,
         public fromDerivate: number = 0,
         public toDerivate: number = 0,
-    ) { 
+    ) {
         super(from, to);
     }
 
